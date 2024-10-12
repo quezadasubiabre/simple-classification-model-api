@@ -3,6 +3,8 @@ import json
 import requests
 import numpy as np
 import torch
+from datetime import datetime
+import time
 from PIL import Image
 from fastapi import FastAPI, File, UploadFile
 from torchvision import models, transforms
@@ -45,6 +47,14 @@ def get_prediction(image_tensor: torch.Tensor) -> str:
     predicted_class = predicted.item()
     
     return labels[predicted_class]
+
+@app.get("/health")
+async def health_check():
+    """
+    Health check endpoint that returns the current timestamp in epoch format.
+    """
+    epoch_timestamp = int(time.time())  # Get current time in epoch format
+    return {"status": "ok", "timestamp": epoch_timestamp}
 
 @app.post("/predict/")
 async def predict_image(file: UploadFile = File(...)):
