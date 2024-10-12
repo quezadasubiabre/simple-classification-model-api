@@ -1,0 +1,22 @@
+{
+    "name": "FastAPI PyTorch Dev",
+    "build": {
+      "dockerfile": "../Dockerfile",
+      "context": ".."
+    },
+    "settings": {
+      "python.pythonPath": "/opt/conda/bin/python",  // Modify this depending on the Python path in your image
+      "terminal.integrated.shell.linux": "/bin/bash"
+    },
+    "extensions": [
+      "ms-python.python",
+      "ms-azuretools.vscode-docker",
+      "esbenp.prettier-vscode"
+    ],
+    "postCreateCommand": "pip install -r requirements.txt",
+    "forwardPorts": [8000],
+    "mounts": [
+      "source=${localWorkspaceFolder},target=/workspace,type=bind"
+    ],
+    "remoteUser": "root"
+  }
