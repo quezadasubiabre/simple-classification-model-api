@@ -9,7 +9,7 @@ send-image:
 		-F 'file=@test_images/dog.png'
 
 docker-build:
-	docker build -t pytorch-fastapi .
+	docker build -t pytorch-fastapi:latest .
 
 docker-run:
 	docker run -d --name pytorch-fastapi-container -p 8000:8000 pytorch-fastapi
